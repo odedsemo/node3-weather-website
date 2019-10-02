@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const hbs = require('hbs')
+const port = process.env.PORT || 3000
 
 //הגדרת משתנים של מסלולי הגישה  של אקספרסס לתיקיות 
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -73,7 +74,7 @@ geocode(req.query.address, (error, {lat, long, location}={}) =>{
 
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
 
-        console.log('Server is up on port 3000.')
+        console.log(`Server is up on port ${port}.`)
 })

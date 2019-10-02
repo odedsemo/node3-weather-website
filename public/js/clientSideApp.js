@@ -6,7 +6,7 @@ const message2= document.querySelector('#message-2')
 appForm.addEventListener('submit', (e) => {
           e.preventDefault();
 message1.textContent ='Loading...'
-    fetch(`http://localhost:3000/weather?address=${appInput.value}`)
+    fetch(`/weather?address=${appInput.value}`)
     .then((response) => {
         response.json()
         .then((data)=>{
