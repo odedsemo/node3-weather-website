@@ -17,7 +17,7 @@ message1.textContent ='Loading...'
                 return
             }   
             message1.textContent= data.location;
-            message2.textContent= `${data.forecast}. the current temperature is ${data.temp}. tommorows temperatures will be ${data.tommorowsHigh}- ${data.tommorowsLow}`;
+            message2.textContent= `${data.forecast}. the current temperature is ${data.temperature} celsius degrees. tommorows temperatures will be ${data.tommorowsHigh}- ${data.tommorowsLow} celsius degrees`;
             
         })
     })
