@@ -53,3 +53,7 @@ button{
     background: #888888;
     color: #cccccc;
 }
+#day{
+    padding: 8px;
+    border: 1px solid #cccccc ;
+}
