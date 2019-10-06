@@ -39,9 +39,10 @@ fetch(`/weather?address=${appInput.value}`)
             let maxTemp = data.dailyForcasts[chosenDayValue].maxTemp;
             let minTemp = data.dailyForcasts[chosenDayValue].minTemp;
             let weather = data.dailyForcasts[chosenDayValue].summary;
+            let location =data.location
             
             message1.textContent = chosenDate
-            message2.textContent = data.location;
+            message2.textContent = location;
             message3.textContent= weather 
             message4.textContent = `Temperatures: ${maxTemp} - ${minTemp} celsius degrees`
         })
