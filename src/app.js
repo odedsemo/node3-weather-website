@@ -43,8 +43,8 @@ app.get('/about', (req, res) => {
         title: 'About chipsili',
         name: 'chipsili kipodet'
     })
-})
 
+})
 
 app.get('/weather', (req, res) => {
 if(!req.query.address){
@@ -108,6 +108,8 @@ geocode(req.query.address, (error, {lat, long, location}={}) =>{
 })
 })
 })
+
+
 
 
 
