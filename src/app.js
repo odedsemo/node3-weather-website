@@ -75,7 +75,7 @@ geocode(req.query.address, (error, {lat, long, location}={}) =>{
             {
         summary:  data.summary1,
         maxTemp:  data.maxTemp1,
-        minTemp1: data.minTemp1,
+        minTemp: data.minTemp1,
             },
             {
         summary:  data.summary2,

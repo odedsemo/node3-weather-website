@@ -6,6 +6,7 @@ const message3= document.querySelector('#message-3')
 const message4= document.querySelector('#message-4')
 const button= document.querySelector('#myButton')
 
+
 let d = new Date()
 let daysArr = document.getElementsByName('days')
 let currentDayOfMonth = d.getDate();
@@ -51,7 +52,14 @@ fetch(`/weather?address=${appInput.value}`)
 
       })
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      function getLocation () {
+      const geo_options = {
+        enableHighAccuracy: true, 
+        maximumAge        : 30000, 
+        timeout           : 27000
+      };
+    
+    
+      const getLocation =  () => {
         if (!navigator.geolocation){
             message1.textContent = 'no navigator in browser'
             message2.textContent = ''
@@ -60,18 +68,23 @@ fetch(`/weather?address=${appInput.value}`)
         return
         }
 
-        navigator.geolocation.getCurrentPosition(chipsilliPosition)
+        navigator.geolocation.getCurrentPosition(showPosition, showError, geo_options)
+
 
     }
 
-    function chipsilliPosition (posi){
-        let long = posi.coords.longitude;
-        let lat = posi.coords.latitude;
+    const showPosition = (posi) =>{
+        const long = posi.coords.longitude;
+        const lat = posi.coords.latitude;
         
+      
+
         fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/906d2597a4c1c17eec9b60faeb781a22/${lat}, ${long}?units=si`)
           .then((res) => {
             return res.json()
             .then((weatherData) => {
+               
+                
                 message1.textContent = `the current temperature on your location is ${weatherData.currently.temperature} celcius`;
                 message2.textContent = ''
                 message3.textContent= '' 
@@ -81,8 +94,45 @@ fetch(`/weather?address=${appInput.value}`)
             })
           })
       
+      }   
+
+    const showError = (error) => {
+        switch(error.code) {
+        case error.PERMISSION_DENIED:
+            message1.textContent = "User denied the request for Geolocation."
+            message2.textContent = ''
+            message3.textContent= '' 
+            message4.textContent = ``
+          break;
+        case error.POSITION_UNAVAILABLE:
+            message1.textContent = "Location information is unavailable check net connection."
+            message2.textContent = ''
+            message3.textContent= '' 
+            message4.textContent = ``
+          break;
+        case error.TIMEOUT:
+            message1.textContent = "The request to get user location timed out."
+            message2.textContent = ''
+            message3.textContent= '' 
+            message4.textContent = ``
+            break;
+        case error.UNKNOWN_ERROR:
+            message1.textContent = "An unknown error occurred."
+            message2.textContent = ''
+            message3.textContent= '' 
+            message4.textContent = ``
+          break;
       }
+    }
+      
+    
+      
       button.addEventListener('click', (e) => {
+        
+        message1.textContent = `Loading...`;
+        message2.textContent = ''
+        message3.textContent= '' 
+        message4.textContent = ``
         getLocation()      
  
 })
